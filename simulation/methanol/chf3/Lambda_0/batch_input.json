@@ -172,8 +172,8 @@
                     }
                 ]
             },
-            "taskCount": 10000,
-            "parallelism": 1000,
+            "taskCount": 1,
+            "parallelism": 1,
             "taskCountPerNode": 1
         }
     ],
