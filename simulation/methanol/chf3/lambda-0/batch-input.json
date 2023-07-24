@@ -1,0 +1,199 @@
+{
+    "taskGroups": [
+        {
+            "taskSpec": {
+                "runnables": [
+                    {
+                        "container": {
+                            "imageUri": "gcr.io/datastore-8b33/gromacs/gromacs",
+                            "volumes": [
+                                "/var/lib/nvidia/lib64:/usr/local/nvidia/lib64",
+                                "/var/lib/nvidia/bin:/usr/local/nvidia/bin"
+                            ],
+                            "options": "-v /mnt/disks/methanol/chf3/lambda-0 -w /container_home -gpus \"device=0\" --privileged",
+                            "commands": [
+                                "gmx",
+                                "grompp",
+                                "-f",
+                                "em/em-0.mdp",
+                                "-c",
+                                "./solvated.gro",
+                                "-p",
+                                "./solvated-top.top",
+                                "-o",
+                                "em/em0.tpr"
+                            ]
+                        }
+                    },
+                    {
+                        "container": {
+                            "imageUri": "gcr.io/datastore-8b33/gromacs/gromacs",
+                            "volumes": [
+                                "/var/lib/nvidia/lib64:/usr/local/nvidia/lib64",
+                                "/var/lib/nvidia/bin:/usr/local/nvidia/bin"
+                            ],
+                            "options": "-v /mnt/disks/methanol/chf3/lambda-0 -w /container_home -gpus \"device=0\" --privileged",
+                            "commands": [
+                                "gmx",
+                                "mdrun",
+                                "-deffnm",
+                                "em/em0"
+                            ]
+                        }
+                    },
+                    {
+                        "container": {
+                            "imageUri": "gcr.io/datastore-8b33/gromacs/gromacs",
+                            "volumes": [
+                                "/var/lib/nvidia/lib64:/usr/local/nvidia/lib64",
+                                "/var/lib/nvidia/bin:/usr/local/nvidia/bin"
+                            ],
+                            "options": "-v /mnt/disks/methanol/chf3/lambda-0 -w /container_home -gpus \"device=0\" --privileged",
+                            "commands": [
+                                "gmx",
+                                "grompp",
+                                "-f",
+                                "nvt/nvt-0.mdp",
+                                "-c",
+                                "em/em0.gro",
+                                "-p",
+                                "./solvated-top.top",
+                                "-o",
+                                "nvt/nvt0.tpr"
+                            ]
+                        }
+                    },
+                    {
+                        "container": {
+                            "imageUri": "gcr.io/datastore-8b33/gromacs/gromacs",
+                            "volumes": [
+                                "/var/lib/nvidia/lib64:/usr/local/nvidia/lib64",
+                                "/var/lib/nvidia/bin:/usr/local/nvidia/bin"
+                            ],
+                            "options": "-v /mnt/disks/methanol/chf3/lambda-0 -w /container_home -gpus \"device=0\" --privileged",
+                            "commands": [
+                                "gmx",
+                                "mdrun",
+                                "-deffnm",
+                                "nvt/nvt0"
+                            ]
+                        }
+                    },
+                    {
+                        "container": {
+                            "imageUri": "gcr.io/datastore-8b33/gromacs/gromacs",
+                            "volumes": [
+                                "/var/lib/nvidia/lib64:/usr/local/nvidia/lib64",
+                                "/var/lib/nvidia/bin:/usr/local/nvidia/bin"
+                            ],
+                            "options": "-v /mnt/disks/methanol/chf3/lambda-0 -w /container_home -gpus \"device=0\" --privileged",
+                            "commands": [
+                                "gmx",
+                                "grompp",
+                                "-f",
+                                "npt/npt-0.mdp",
+                                "-c",
+                                "nvt/nvt0.gro",
+                                "-p",
+                                "./solvated-top.top",
+                                "-o",
+                                "npt/npt0.tpr"
+                            ]
+                        }
+                    },
+                    {
+                        "container": {
+                            "imageUri": "gcr.io/datastore-8b33/gromacs/gromacs",
+                            "volumes": [
+                                "/var/lib/nvidia/lib64:/usr/local/nvidia/lib64",
+                                "/var/lib/nvidia/bin:/usr/local/nvidia/bin"
+                            ],
+                            "options": "-v /mnt/disks/methanol/chf3/lambda-0 -w /container_home -gpus \"device=0\" --privileged",
+                            "commands": [
+                                "gmx",
+                                "mdrun",
+                                "-deffnm",
+                                "npt/npt0"
+                            ]
+                        }
+                    },
+                    {
+                        "container": {
+                            "imageUri": "gcr.io/datastore-8b33/gromacs/gromacs",
+                            "volumes": [
+                                "/var/lib/nvidia/lib64:/usr/local/nvidia/lib64",
+                                "/var/lib/nvidia/bin:/usr/local/nvidia/bin"
+                            ],
+                            "options": "-v /mnt/disks/methanol/chf3/lambda-0 -w /container_home -gpus \"device=0\" --privileged",
+                            "commands": [
+                                "gmx",
+                                "grompp",
+                                "-f",
+                                "production-md/production-md-0.mdp",
+                                "-c",
+                                "npt/npt0.gro",
+                                "-p",
+                                "./solvated-top.top",
+                                "-o",
+                                "production-md/production-md0.tpr"
+                            ]
+                        }
+                    },
+                    {
+                        "container": {
+                            "imageUri": "gcr.io/datastore-8b33/gromacs/gromacs",
+                            "volumes": [
+                                "/var/lib/nvidia/lib64:/usr/local/nvidia/lib64",
+                                "/var/lib/nvidia/bin:/usr/local/nvidia/bin"
+                            ],
+                            "options": "-v /mnt/disks/methanol/chf3/lambda-0 -w /container_home -gpus \"device=0\" --privileged",
+                            "commands": [
+                                "gmx",
+                                "mdrun",
+                                "-deffnm",
+                                "production-md/production-md0"
+                            ]
+                        }
+                    }
+                ],
+                "computeResource": {
+                    "cpuMilli": 4000,
+                    "memoryMib": 8000,
+                    "bootDiskMib": 20000
+                },
+                "maxRetryCount": 1,
+                "maxRunDuration": "200000s",
+                "volumes": [
+                    {
+                        "gcs": {
+                            "remotePath": "osmo-data-store/tmp/simulation/methanol/chf3/lambda-0"
+                        },
+                        "mountPath": "/mnt/disks/methanol/chf3/lambda-0"
+                    }
+                ]
+            },
+            "taskCount": 1,
+            "parallelism": 1,
+            "taskCountPerNode": 1
+        }
+    ],
+    "logsPolicy": {
+        "destination": "CLOUD_LOGGING"
+    },
+    "allocationPolicy": {
+        "instances": [
+            {
+                "installGpuDrivers": true,
+                "policy": {
+                    "machineType": "n1-standard-16",
+                    "accelerators": [
+                        {
+                            "type": "nvidia-tesla-t4",
+                            "count": "1"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
