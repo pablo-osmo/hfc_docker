@@ -1,0 +1,15 @@
+[ defaults ]
+; nbfunc	comb-rule	gen-pairs	fudgeLJ	fudgeQQ
+     1	     2	yes   	0.500000	0.833333
+
+#include "chf3.prm"
+#include "methanol.prm"
+#include "chf3.itp"
+#include "methanol.itp"
+
+[ system ]
+chf3_in_methanol
+
+[ molecules ]
+TRIFL	1
+METHA	748
